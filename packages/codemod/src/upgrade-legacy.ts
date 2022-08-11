@@ -46,6 +46,7 @@ const upgradeLegacy = async () => {
   steps.push({
     name: "move the config from blitz.config.ts to next.config.js",
     action: async () => {
+      
       const program = getCollectionFromSource(blitzConfigFile)
       const parsedProgram = program.get()
 
