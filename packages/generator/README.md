@@ -1,4 +1,4 @@
-# `generator`
+# `generator` 
 
 This package houses all files related to Blitz codegen. In the main `src` directory you'll find the base `generator` class and a directory of `generators` that extend it. The subclasses aren't terribly interesting, most of the fun happens in the abstract parent class. Each generator may (depending on whether it's a net new addition or modifying existing files) have a corresponding template defined in the `templates` directory.
 
