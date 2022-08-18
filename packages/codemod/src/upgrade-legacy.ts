@@ -124,8 +124,8 @@ const upgradeLegacy = async () => {
           j.assignmentExpression(
             "=",
             j.memberExpression(j.identifier("module"), j.identifier("exports")),
-            j.callExpression(j.identifier("require"), [j.identifier(`"@blitzjs/next/eslint"`)]),
-          ),
+            j.callExpression(j.identifier("require"), [j.identifier(`"@blitzjs/next/eslint"`)])
+          )
         )
         parsedProgram.value.program.body.push(moduleExport)
         fs.writeFileSync(path.resolve(".eslintrc.js"), program.toSource())
@@ -133,7 +133,7 @@ const upgradeLegacy = async () => {
       else{
         log.error(".eslintrc.js does not exist")
       }
-    },
+    }
   })
 
   steps.push({
