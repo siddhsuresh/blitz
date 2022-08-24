@@ -47,7 +47,6 @@ const upgradeLegacy = async () => {
   let steps: Step[] = []
 
   // Add steps in order
-
   steps.push({
     name: "move the config from blitz.config.ts to next.config.js",
     action: async () => {
