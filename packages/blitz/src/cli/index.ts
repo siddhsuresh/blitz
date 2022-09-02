@@ -164,7 +164,7 @@ async function main() {
         console.log(err)
       })
   } else {
-    if (args["--help"] && args._.length === 0) {
+    if (args["_"].length === 0 && args["--help"]) {
       // TODO: add back the generate command description once it's working
       // generate, g     Generate new files for your Blitz project 🤠
 
