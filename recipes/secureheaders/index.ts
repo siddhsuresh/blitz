@@ -31,8 +31,8 @@ export default RecipeBuilder()
       if (
         program
           .find(j.ImportDeclaration)
-          .filter((path) => path.node.source.value === secureHeadersImport.source.value).length ===
-        0
+          .filter((path) => path.node.source.value === secureHeadersImport.source.value)
+          .length === 0
       ) {
         addImport(program, secureHeadersImport)
       }
@@ -129,7 +129,6 @@ const addHttpHeaders = (program: Program, headers: Array<{name: string; value: s
   headersFunction.async = true
   const headersCollection = transformNextConfig(program).configObj.find(
     (value) =>
-      // @ts-ignore
       value.type === "ObjectProperty" &&
       value.key.type === "Identifier" &&
       value.key.name === "headers",
@@ -145,7 +144,6 @@ const addHttpHeaders = (program: Program, headers: Array<{name: string; value: s
 
   const poweredByProp = transformNextConfig(program).configObj.find(
     (value) =>
-      // @ts-ignore
       value.type === "ObjectProperty" &&
       value.key.type === "Identifier" &&
       value.key.name === "poweredByHeader",
