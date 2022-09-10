@@ -122,5 +122,5 @@ jobs:
         shell: bash
 
       - name: Test
-        run: pnpm test -- --api="http://127.0.0.1:9080"
+        run: pnpm test -- --api="http://127.0.0.1:9080" --concurrency=1
         shell: bash
