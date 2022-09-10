@@ -123,5 +123,5 @@ jobs:
         shell: bash
 
       - name: Test
-        run: pnpm test -- --filter=./integration-tests/* --filter=!auth
+        run: pnpm test -- --filter=./integration-tests/* --filter=!test-auth
         shell: bash
