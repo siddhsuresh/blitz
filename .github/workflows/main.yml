@@ -122,7 +122,7 @@ jobs:
         shell: bash
 
       - name: Test
-        run: pnpm test -- --filter=./packages/*
+        run: pnpm test -- --filter=./packages/* 
         shell: bash
         
   Integration-Tests:
@@ -171,5 +171,5 @@ jobs:
         shell: bash
 
       - name: Test
-        run: pnpm test -- --filter=./integration-tests/* --concurrency=3
+        run: pnpm test -- --filter=./integration-tests/* --concurrency=2
         shell: bash
