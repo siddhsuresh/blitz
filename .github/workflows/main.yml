@@ -102,8 +102,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.NODE_VERSION }}
-          cache: "pnpm"
-
+          
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
         shell: bash
@@ -122,5 +121,5 @@ jobs:
         shell: bash
 
       - name: Test
-        run: pnpm test -- --concurrency=5
+        run: pnpm test
         shell: bash
