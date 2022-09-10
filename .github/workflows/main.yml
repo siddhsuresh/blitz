@@ -122,8 +122,9 @@ jobs:
         shell: bash
 
       - name: Test
-        run: pnpm test -- --filter=./packages/*  --concurrency=75%
+        run: pnpm test -- --filter=./packages/*
         shell: bash
+        
   Integration-Tests:
     name: "Integration Test: ${{ matrix.os }} (node@${{ matrix.NODE_VERSION }})"
     runs-on: ${{ matrix.os }}
@@ -170,5 +171,5 @@ jobs:
         shell: bash
 
       - name: Test
-        run: pnpm test -- --filter=./integration-tests/* --concurrency=75%
+        run: pnpm test -- --filter=./integration-tests/* --concurrency=3
         shell: bash
