@@ -77,7 +77,7 @@ jobs:
         run: pnpm build:apps -- --api="http://127.0.0.1:9080"
 
   Tests:
-    name: "Unit Test: ${{ matrix.os }} (node@${{ matrix.NODE_VERSION }})"
+    name: "Test: ${{ matrix.os }} (node@${{ matrix.NODE_VERSION }})"
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -122,5 +122,5 @@ jobs:
         shell: bash
 
       - name: Test
-        run: pnpm test -- --concurrency=100%
+        run: pnpm test -- --concurrency=5
         shell: bash
