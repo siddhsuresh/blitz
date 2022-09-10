@@ -109,6 +109,8 @@ jobs:
 
       - run: pnpm manypkg check
         shell: bash
+      - name: Clear npm cache
+        run: npm cache clean --force
 
       - name: Turborepo local server
         uses: felixmosh/turborepo-gh-artifacts@v1
