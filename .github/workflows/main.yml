@@ -123,5 +123,5 @@ jobs:
         shell: bash
 
       - name: Test
-        run: pnpm test
+        run: pnpm test -- --concurrency=50%
         shell: bash
