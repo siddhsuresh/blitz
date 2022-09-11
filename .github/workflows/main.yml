@@ -147,7 +147,7 @@ jobs:
 
   Integration-Test:
     name: "Matrix Jobs ${{ matrix.os }} ${{matrix.folder}}"
-    needs: [find-jobs]
+    needs: [Find-integration-tests]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
