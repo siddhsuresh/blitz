@@ -157,16 +157,15 @@ jobs:
         run: |
             cd ./integration-tests
             folders=$(tree -J -d -L 1 | jq -c '.[0].contents | map(.name)')
-            echo $folders
-            echo "::set-output name=matrix::$folders"
+            echo {\"include\":$folders}
+            echo "::set-output name=matrix::{\"include\":$folders}
 
   Integration-Test:
     name: "Matrix Jobs ${{ matrix.os }} ${{matrix.folder}}"
     needs: [find-integration-tests]
     strategy:
       matrix:
-        value: 
-          include: ${{needs.find-integration-tests.outputs.matrix}}
+        value: ${{needs.find-integration-tests.outputs.matrix}}
         os :
           - ubuntu-latest
           - windows-latest
