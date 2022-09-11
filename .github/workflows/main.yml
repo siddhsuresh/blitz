@@ -73,7 +73,7 @@ jobs:
           server-token: ${{ env.TURBO_TOKEN }}
       - uses: preactjs/compressed-size-action@v2
         with:
-          pattern: "**/dist/**/*.(js|cjs|mjs)"
+          pattern: "**/dist/**/*.{js,cjs,mjs}"
       - name: Build Apps
         run: pnpm build:apps -- --api="http://127.0.0.1:9080"
 
