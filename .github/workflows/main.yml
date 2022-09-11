@@ -129,20 +129,20 @@ jobs:
 #       - name: Test Apps
 #         run: pnpm test -- --filter=./apps/*
 #         shell: bash
-  job1:
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-    steps:
-      - id: set-matrix
-        run: echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
-  job2:
-    needs: job1
-    runs-on: ubuntu-latest
-    strategy:
-      matrix: ${{ fromJSON(needs.job1.outputs.matrix) }}
-    steps:
-      - run: echo ${{matrix}}
+#   job1:
+#     runs-on: ubuntu-latest
+#     outputs:
+#       matrix: ${{ steps.set-matrix.outputs.matrix }}
+#     steps:
+#       - id: set-matrix
+#         run: echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
+#   job2:
+#     needs: job1
+#     runs-on: ubuntu-latest
+#     strategy:
+#       matrix: ${{ fromJSON(needs.job1.outputs.matrix) }}
+#     steps:
+#       - run: echo ${{matrix}}
       
   find-integration-tests:
     name: "Find Integration Tests"
@@ -169,43 +169,44 @@ jobs:
         folder: ${{fromJSON(needs.find-integration-tests.outputs.folders)}}
         os :
           - ubuntu-latest
+          - windows-latest
       fail-fast: false
     runs-on: ${{ matrix.os }}   
     steps:
       - run: echo ${{matrix.folder}}
-#       - name: Checkout
-#         uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
-#       - name: Setup PNPM
-#         uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
-#         with:
-#           version: 6.32.6
+      - name: Setup PNPM
+        uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
+        with:
+          version: 6.32.6
 
-#       - name: Setup node@${{ matrix.NODE_VERSION }}
-#         uses: actions/setup-node@v2
-#         with:
-#           node-version: ${{ matrix.NODE_VERSION }}
-#           cache: "pnpm"
+      - name: Setup node@${{ matrix.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.NODE_VERSION }}
+          cache: "pnpm"
 
-#       - name: Install dependencies
-#         run: pnpm install --frozen-lockfile
-#         shell: bash
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        shell: bash
 
-#       - run: pnpm manypkg check
-#         shell: bash
+      - run: pnpm manypkg check
+        shell: bash
 
-#       - name: Turborepo local server
-#         uses: felixmosh/turborepo-gh-artifacts@v1
-#         with:
-#           repo-token: ${{ secrets.GITHUB_TOKEN }}
-#           server-token: ${{ env.TURBO_TOKEN }}
+      - name: Turborepo local server
+        uses: felixmosh/turborepo-gh-artifacts@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          server-token: ${{ env.TURBO_TOKEN }}
 
-#       - name: Build
-#         run: pnpm build -- --api="http://127.0.0.1:9080"
-#         shell: bash
+      - name: Build
+        run: pnpm build -- --api="http://127.0.0.1:9080"
+        shell: bash
 
-#       - name: Test Packages
-#         working-directory: ${{ matrix.folder }}
-#         run: npm test
-#         shell: bash
+      - name: Test Packages
+        working-directory: ${{ matrix.folder }}
+        run: npm test
+        shell: bash
     
