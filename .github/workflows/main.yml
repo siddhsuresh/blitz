@@ -208,5 +208,4 @@ jobs:
       - name: Test Packages
         working-directory: ${{ matrix.folder }}
         run: npm test
-        shell: bash
     
