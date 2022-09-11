@@ -171,7 +171,7 @@ jobs:
       fail-fast: false
     runs-on: ${{ matrix.os }}   
     steps:
-      - run: echo ${{fromJSON(needs.find-integration-tests.outputs.matrix)}}
+      - run: echo ${{needs.find-integration-tests.outputs.matrix}}
 #       - name: Checkout
 #         uses: actions/checkout@v3
 
