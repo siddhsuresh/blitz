@@ -154,7 +154,7 @@ jobs:
         os :
           - ubuntu-latest
           - windows-latest
-        fail-fast: false
+      fail-fast: false
     runs-on: ${{ matrix.os }}   
     steps:
       - name: Checkout
