@@ -149,7 +149,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
 #       folders: ${{ toJson(steps.jobs.outputs.folders) }}
-      matrix: ${{ steps.jobs.outputs.folders }}
+      folders: ${{ steps.jobs.outputs.folders }}
     steps:
       - uses: actions/checkout@v1
       - name: "Find all folders"
@@ -158,7 +158,7 @@ jobs:
             cd ./integration-tests
             tree -J -d -L 1 | jq -c  '.[0].contents | map(.name | tostring)'
             folders=$(tree -J -d -L 1 | jq -c  '.[0].contents | map(.name | tostring)')
-            echo "::set-output name=matrix::$folders"
+            echo "::set-output name=folders::$folders"
 
   Integration-Test:
     name: "Matrix Jobs ${{ matrix.os }}"
@@ -170,7 +170,7 @@ jobs:
       fail-fast: false
     runs-on: ${{ matrix.os }}   
     steps:
-      - run: echo ${{fromJSON(needs.find-integration-tests)}}
+      - run: echo ${{fromJSON(needs.find-integration-tests.outputs.folders)}}
 #       - name: Checkout
 #         uses: actions/checkout@v3
 
