@@ -157,7 +157,7 @@ jobs:
         run: |
             cd ./integration-tests
             tree -J -d -L 1 | jq -c  '.[0].contents'
-            folders=$(tree -J -d -L 1 | jq -c  '.[0].contents | map({(.key): .name})')
+            folders=$(tree -J -d -L 1 | jq -c  '.[0].contents | map({(.type): .name})')
             echo {\"include\":$folders}
             echo "::set-output name=matrix::{\"include\":$folders}"
 
