@@ -162,18 +162,16 @@ jobs:
             echo "::set-output name=matrix::{\"include\":$folders}"
 
   Integration-Test:
-    name: "Matrix Jobs ${{ matrix.os }} ${{matrix.folder}}"
+    name: "Matrix Jobs ${{ matrix.os }}"
     needs: [find-integration-tests]
     strategy:
       matrix:
-        value: ${{fromJSON(needs.find-integration-tests.outputs.matrix)}}
         os :
           - ubuntu-latest
-          - windows-latest
       fail-fast: false
     runs-on: ${{ matrix.os }}   
     steps:
-      - run: echo ${{matrix}}
+      - run: echo ${{fromJSON(needs.find-integration-tests.outputs.matrix)}}
 #       - name: Checkout
 #         uses: actions/checkout@v3
 
