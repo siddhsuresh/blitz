@@ -135,7 +135,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
 #       folders: ${{ toJson(steps.jobs.outputs.folders) }}
-      matrix: ${{ toJSON(steps.jobs.outputs.folders) }}
+      matrix: ${{ steps.jobs.outputs.folders }}
     steps:
       - uses: actions/checkout@v1
       - name: "Find all folders"
@@ -151,8 +151,7 @@ jobs:
     needs: [find-integration-tests]
     strategy:
       matrix:
-        value: 
-          - ${{fromJSON(needs.find-integration-tests.outputs.matrix)}}
+        value: ${{fromJSON(needs.find-integration-tests.outputs.matrix)}}
         os :
           - ubuntu-latest
           - windows-latest
