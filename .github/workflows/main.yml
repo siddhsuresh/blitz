@@ -71,6 +71,7 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           server-token: ${{ env.TURBO_TOKEN }}
+      - uses: preactjs/compressed-size-action@v2
       - name: Build
         run: pnpm build -- --api="http://127.0.0.1:9080"
       - name: Build Apps
