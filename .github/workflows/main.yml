@@ -156,8 +156,8 @@ jobs:
         shell: bash
         run: |
             cd ./integration-tests
-            tree -J -d -L 1 | jq -c  '.[0].contents' | map(.name | tostring)
-            folders=$(tree -J -d -L 1 | jq -c  '.[0].contents' | map(.name | tostring))
+            tree -J -d -L 1 | jq -c  '.[0].contents | map(.name | tostring)'
+            folders=$(tree -J -d -L 1 | jq -c  '.[0].contents | map(.name | tostring)')
             echo "::set-output name=matrix::$folders"
 
   Integration-Test:
