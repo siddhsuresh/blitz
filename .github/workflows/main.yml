@@ -157,7 +157,7 @@ jobs:
         node_version:
           - 16
         folder: 
-          - ${{ fromJson(needs.find-jobs.outputs.folders )}}
+          - ${{ needs.find-jobs.outputs.folders }}
       fail-fast: false      
     steps:
       - name: Folder
