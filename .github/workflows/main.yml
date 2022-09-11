@@ -137,11 +137,12 @@ jobs:
       folders: ${{ steps.jobs.outputs.folders }}
     steps:
       - uses: actions/checkout@v1
-
-      - id: jobs
-        uses: philips-labs/list-folders-action@v1
-        with:
-          path: ./integration-tests
+      - name: "Find all folders"
+        shell: bash
+        run: |
+            folders=$(tree -J -d -L 1 | jq -c '.[0].contents | map(.name)')
+            echo $folders
+            echo "::set-output name=folders::$folders"
 
   Integration-Test:
     name: "Matrix Jobs ${{ matrix.os }} ${{matrix.folder}}"
