@@ -130,8 +130,8 @@ jobs:
         run: pnpm test -- --filter=./apps/*
         shell: bash
         
-  find-jobs:
-    name: Find Jobs
+  Find-integration-tests:
+    name: "Find Integration Tests"
     runs-on: ubuntu-latest
     outputs:
       folders: ${{ steps.jobs.outputs.folders }}
@@ -140,6 +140,7 @@ jobs:
       - name: "Find all folders"
         shell: bash
         run: |
+            cd ./integration-tests
             folders=$(tree -J -d -L 1 | jq -c '.[0].contents | map(.name)')
             echo $folders
             echo "::set-output name=folders::$folders"
