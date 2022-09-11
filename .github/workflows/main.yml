@@ -134,7 +134,7 @@ jobs:
     name: "Find Integration Tests"
     runs-on: ubuntu-latest
     outputs:
-      folders: ${{ steps.jobs.outputs.folders }}
+      folders: ${{ toJson(steps.jobs.outputs.folders) }}
     steps:
       - uses: actions/checkout@v1
       - name: "Find all folders"
@@ -148,20 +148,15 @@ jobs:
   Integration-Test:
     name: "Matrix Jobs ${{ matrix.os }} ${{matrix.folder}}"
     needs: [Find-integration-tests]
-    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os:
+        folder: ${{ fromJson(needs.find-jobs.outputs.folders) }}
+        os :
           - ubuntu-latest
           - windows-latest
-        node_version:
-          - 16
-        folder: 
-          - ${{ needs.find-jobs.outputs.folders }}
-      fail-fast: false      
+        fail-fast: false
+    runs-on: ${{ matrix.os }}   
     steps:
-      - name: Folder
-        run: echo ${{ matrix.folder }}
       - name: Checkout
         uses: actions/checkout@v3
 
