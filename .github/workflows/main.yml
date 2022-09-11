@@ -171,7 +171,7 @@ jobs:
       fail-fast: false
     runs-on: ${{ matrix.os }}   
     steps:
-      - run: echo "Hello ${{needs.find-integration-tests}}"
+      - run: echo {{needs.find-integration-tests}}
 #       - name: Checkout
 #         uses: actions/checkout@v3
 
