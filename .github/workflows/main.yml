@@ -170,7 +170,7 @@ jobs:
       fail-fast: false
     runs-on: ${{ matrix.os }}   
     steps:
-      - run: echo ${{fromJSON(needs.find-integration-tests.outputs.folders)}}
+      - run: echo ${{needs.find-integration-tests.outputs.folders}}
 #       - name: Checkout
 #         uses: actions/checkout@v3
 
