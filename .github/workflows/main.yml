@@ -156,7 +156,7 @@ jobs:
         shell: bash
         run: |
             cd ./integration-tests
-            folders=$(tree -J -d -L 1 | jq -c '.[0].contents | map(.name)')
+            folders=$(tree -J -d -L 1 | jq -c --compact-output --null-input '.[0].contents | map(.name)')
             echo {\"include\":$folders}
             echo "::set-output name=matrix::{\"include\":$folders}"
 
