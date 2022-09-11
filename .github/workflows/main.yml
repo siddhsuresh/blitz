@@ -162,16 +162,17 @@ jobs:
             echo "::set-output name=folders::$folders"
 
   Integration-Test:
-    name: "Matrix Jobs ${{ matrix.os }}"
+    name: "Matrix Jobs ${{ matrix.os }} ${{matrix.folder}}"
     needs: [find-integration-tests]
     strategy:
       matrix:
+        folder: ${{needs.find-integration-tests.outputs.folders}}
         os :
           - ubuntu-latest
       fail-fast: false
     runs-on: ${{ matrix.os }}   
     steps:
-      - run: echo ${{needs.find-integration-tests.outputs.folders}}
+      - run: echo ${{matrix.folder}}
 #       - name: Checkout
 #         uses: actions/checkout@v3
 
