@@ -130,11 +130,12 @@ jobs:
         run: pnpm test -- --filter=./apps/*
         shell: bash
         
-  Find-integration-tests:
+  find-integration-tests:
     name: "Find Integration Tests"
     runs-on: ubuntu-latest
     outputs:
-      folders: ${{ toJson(steps.jobs.outputs.folders) }}
+#       folders: ${{ toJson(steps.jobs.outputs.folders) }}
+      matrix: ${{ toJSON(steps.jobs.outputs.folders) }}
     steps:
       - uses: actions/checkout@v1
       - name: "Find all folders"
@@ -147,10 +148,10 @@ jobs:
 
   Integration-Test:
     name: "Matrix Jobs ${{ matrix.os }} ${{matrix.folder}}"
-    needs: [Find-integration-tests]
+    needs: [find-integration-tests]
     strategy:
       matrix:
-        folder: ${{ fromJson(needs.find-jobs.outputs.folders) }}
+        value: ${{fromJSON(needs.find-integration-tests.outputs.matrix)}}
         os :
           - ubuntu-latest
           - windows-latest
@@ -190,6 +191,6 @@ jobs:
 
       - name: Test Packages
         working-directory: ${{ matrix.folder }}
-        run: pnpm test
+        run: npm test
         shell: bash
     
