@@ -161,8 +161,8 @@ jobs:
             folders=$(tree -J -d -L 1 | jq -c  '.[0].contents | map(.name | tostring)')
             echo "::set-output name=folders::$folders"
 
-  Integration-Test:
-    name: "Matrix Jobs ${{ matrix.os }} ${{matrix.folder}}"
+  Integration-Tests:
+    name: "Integration Test: ${{matrix.folder}} - ${{ matrix.os }} "
     needs: [find-integration-tests]
     strategy:
       matrix:
@@ -206,6 +206,5 @@ jobs:
         shell: bash
 
       - name: Test Packages
-        working-directory: ${{ matrix.folder }}
-        run: npm test
+        run: pnpm test -- --filter=./integration-tests/${{matrix.folder}}
     
