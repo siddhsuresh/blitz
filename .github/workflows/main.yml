@@ -149,10 +149,11 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
 #       folders: ${{ toJson(steps.jobs.outputs.folders) }}
-      folders: ${{ steps.jobs.outputs.folders }}
+      folders: ${{ steps.set-matrix.outputs.folders }}
     steps:
       - uses: actions/checkout@v1
-      - name: "Find all folders"
+      - id: set-matrix
+        name: "Find all folders"
         shell: bash
         run: |
             cd ./integration-tests
