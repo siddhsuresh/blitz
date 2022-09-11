@@ -166,7 +166,7 @@ jobs:
     needs: [find-integration-tests]
     strategy:
       matrix:
-        folder: ${{needs.find-integration-tests.outputs.folders}}
+        folder: ${{fromJSON(needs.find-integration-tests.outputs.folders)}}
         os :
           - ubuntu-latest
       fail-fast: false
