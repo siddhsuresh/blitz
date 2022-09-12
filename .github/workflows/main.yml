@@ -112,7 +112,7 @@ jobs:
         shell: bash
         
       - name: Test Apps
-        run: pnpm test -- --filter=./apps/*
+        run: pnpm test -- --filter=./apps/* --api="http://127.0.0.1:9080"
         shell: bash
       
   find-integration-tests:
@@ -176,5 +176,5 @@ jobs:
         shell: bash
 
       - name: Test Packages
-        run: pnpm test -- --filter=./integration-tests/${{matrix.folder}}
+        run: pnpm test -- --filter=./integration-tests/${{matrix.folder}} --api="http://127.0.0.1:9080"
     
