@@ -108,7 +108,7 @@ jobs:
         shell: bash
 
       - name: Test Packages
-        run: pnpm test -- --filter=./packages/*
+        run: pnpm test -- --filter=./packages/* --api="http://127.0.0.1:9080"
         shell: bash
         
       - name: Test Apps
