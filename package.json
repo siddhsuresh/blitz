@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "postinstall": "npx playwright install-deps",
+    "postinstall": "npx playwright install-deps chromium",
     "prepare": "husky install",
     "build": "turbo run build",
     "build:apps": "turbo run buildapp --concurrency=1",
