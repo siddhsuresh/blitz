@@ -25,6 +25,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16
+          cache: 'npm'
+          cache-dependency-path: '**/.github/workflows/*.yml'
       - name: check if changeset is present
         if: "!contains( github.event.pull_request.labels.*.name, 'changeset-ignore')"
         run: npx changeset status --since=main
