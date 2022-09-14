@@ -25,11 +25,12 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16
-          cache: 'npm'
-          cache-dependency-path: '**/.github/workflows/*.yml'
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install  --frozen-lockfile
       - name: check if changeset is present
         if: "!contains( github.event.pull_request.labels.*.name, 'changeset-ignore')"
-        run: npx changeset status --since=main
+        run: changeset status --since=main
       
   lint:
     name: Lint
