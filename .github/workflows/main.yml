@@ -13,6 +13,22 @@ env:
   TURBO_TEAM: foo
 
 jobs:
+  check-changeset:
+    name: Check Changeset
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
+        with:
+          version: 6.32.6
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - name: check if changeset is present
+        if: "!contains( github.event.pull_request.labels.*.name, 'changeset-ignore')"
+        run: npx changeset status --since=main
+      
   lint:
     name: Lint
     runs-on: ubuntu-latest
