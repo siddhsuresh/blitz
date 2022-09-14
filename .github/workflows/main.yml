@@ -127,8 +127,7 @@ jobs:
         shell: bash
         run: |
           cd ./integration-tests
-          tree -J -d -L 1 | jq -c  '.[0].contents | map(.name | tostring)'
-          folders=$(tree -J -d -L 1 | jq -c  '.[0].contents | map(.name | tostring)')
+          folders=$(tree -J -d -L 1 | jq -c  '.[0].contents | map(.name | tostring)'| jq 'del(.[] | select(. == "utils"))')
           echo "::set-output name=folders::$folders"
 
   Integration-Tests:
