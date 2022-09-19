@@ -14,14 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v1
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@v2
       - name: Setup node
         uses: actions/setup-node@v2
         with:
           node-version: 16
       - name: Check if changeset is added
         run: |
-          git pull -f origin main:main
           npx @changesets/cli status --since=${{github.event.pull_request.head.sha}} --verbose
