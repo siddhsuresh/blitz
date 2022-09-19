@@ -25,4 +25,4 @@ jobs:
       - name: Check if changeset is added
         run: |
           npm i -g @changesets/cli@2.22.0
-          changeset status --since-main  
+          changeset status --since-origin/main  
