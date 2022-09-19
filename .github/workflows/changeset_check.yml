@@ -24,5 +24,4 @@ jobs:
       - name: Check if changeset is added
         run: |
           git pull -f origin main:main
-          npm i -g @changesets/cli@2.22.0
-          changeset status --verbose
+          npx @changesets/cli status --since=${{github.event.pull_request.head.sha}} --verbose
