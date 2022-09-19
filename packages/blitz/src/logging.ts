@@ -2,7 +2,7 @@ import {ISettingsParam, Logger} from "tslog"
 import c from "chalk"
 import {Table} from "console-table-printer"
 import ora from "ora"
-import readline from "readline"
+import readline from "readline" 
 
 export type LogLevel = "trace" | "debug" | "info" | "warn" | "error" | "fatal"
 
