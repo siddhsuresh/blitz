@@ -10,6 +10,9 @@ const seed = async () => {
   // for (let i = 0; i < 5; i++) {
   //   await db.project.create({ data: { name: "Project " + i } })
   // }
+  process.exit(0)
 }
+
+seed()
 
 export default seed
