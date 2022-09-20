@@ -8,6 +8,14 @@ module.exports = {
   },
   rules: {
     "@next/next/no-html-link-for-pages": "off",
+    "react/no-unknown-property": [
+      2,
+      {
+        "ignore": [
+          "jsx"
+        ]
+      }
+    ]
   },
   overrides: [
     {
