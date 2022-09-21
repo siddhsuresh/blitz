@@ -23,7 +23,7 @@ jobs:
           node-version: 16
       - name: Check if changeset is added
         run: |
-          git remote add upstream https://github.com/${GITHUB_ACTION_REPOSITORY}.git
+          git remote add upstream "https://github.com/"+${GITHUB_ACTION_REPOSITORY}+".git"
           git fetch upstream ${GITHUB_HEAD_REF}
           git fetch origin ${GITHUB_BASE_REF}
           git checkout upstream/${GITHUB_HEAD_REF}
