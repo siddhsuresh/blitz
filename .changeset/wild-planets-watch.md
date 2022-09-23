@@ -1,5 +1,4 @@
 ---
-"blitz": patch
 "@blitzjs/auth": patch
 ---
 
