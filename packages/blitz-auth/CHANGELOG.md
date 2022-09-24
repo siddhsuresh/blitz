@@ -1,5 +1,15 @@
 # @blitzjs/auth
 
+## 2.0.0-beta.5
+
+### Patch Changes
+
+- 9fe0cc5: Fix auth related React hydration errors by not redirecting until after component mount.
+- Updated dependencies [9db6c88]
+- Updated dependencies [9fe0cc5]
+- Updated dependencies [0edeaa3]
+  - blitz@2.0.0-beta.5
+
 ## 2.0.0-beta.4
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @blitzjs/generator
 
+## 2.0.0-beta.5
+
+### Patch Changes
+
+- 824a9b5: Fix `no-floating-promises` lint errors after generating pages with Blitz generator by adding `await` to `router.push` calls in the templates
+- bf4aaf1: Move `useCurrentUser` hook from `core/hooks` to `users/hooks` folder
+- b43c1a8: Remove the random user (noop@blitzjs.com) & use user's default git account when commiting a new generated blitz project.
+
 ## 2.0.0-beta.4
 
 ### Patch Changes
