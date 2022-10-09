@@ -1,6 +1,6 @@
-import {assert, baseLogger, Ctx, newLine, prettyMs} from "blitz"
+import {assert, baseLogger, Ctx, newLine, prettyMs, ResolverConfig} from "blitz"
 import {NextApiRequest, NextApiResponse} from "next"
-import {deserialize, serialize as superjsonSerialize} from "superjson"
+import {deserialize, serialize as superjsonSerialize, parse} from "superjson"
 import {resolve} from "path"
 import chalk from "chalk"
 
@@ -25,7 +25,7 @@ function getGlobalObject<T extends Record<string, unknown>>(key: string, default
 }
 
 type Resolver = (...args: unknown[]) => Promise<unknown>
-type ResolverFiles = Record<string, () => Promise<{default?: Resolver}>>
+type ResolverFiles = Record<string, () => Promise<{default?: Resolver; config?: ResolverConfig}>>
 export type ResolverPathOptions = "queries|mutations" | "root" | ((path: string) => string)
 
 // We define `global.__internal_blitzRpcResolverFiles` to ensure we use the same global object.
@@ -168,8 +168,8 @@ export function rpcHandler(config: RpcConfig) {
     if (!loadableResolver) {
       throw new Error("No resolver for path: " + routePath)
     }
-
     const resolver = (await loadableResolver()).default
+
     if (!resolver) {
       throw new Error("No default export for resolver path: " + routePath)
     }
@@ -178,10 +178,18 @@ export function rpcHandler(config: RpcConfig) {
       // We used to initiate database connection here
       res.status(200).end()
       return
-    } else if (req.method === "POST") {
-      // Handle RPC call
-
-      if (typeof req.body.params === "undefined") {
+    } else if (req.method === "POST" || req.method === "GET") {
+      if (req.method === "GET") {
+        if (!req.query) {
+          const error = {message: "Request body is missing the `params` key"}
+          log.error(error.message)
+          res.status(400).json({
+            result: null,
+            error,
+          })
+          return
+        }
+      } else if (typeof req.body.params === "undefined") {
         const error = {message: "Request body is missing the `params` key"}
         log.error(error.message)
         res.status(400).json({
@@ -192,11 +200,22 @@ export function rpcHandler(config: RpcConfig) {
       }
 
       try {
-        const data = deserialize({
-          json: req.body.params,
-          meta: req.body.meta?.params,
-        })
-
+        let data
+        if (req.method === "POST") {
+          data = deserialize({
+            json: req.body.params,
+            meta: req.body.meta?.params,
+          })
+        } else {
+          let meta = req.query.meta
+          if (Array.isArray(meta)) {
+            meta = meta[meta.length - 1]
+          }
+          data = deserialize({
+            json: parse(req.query.params as string),
+            meta: parse(meta as string),
+          })
+        }
         log.info(customChalk.dim("Starting with input:"), data ? data : JSON.stringify(data))
         const startTime = Date.now()
         const result = await resolver(data, (res as any).blitzCtx)

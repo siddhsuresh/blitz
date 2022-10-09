@@ -936,6 +936,8 @@ importers:
       blitz: 2.0.0-beta.4
       chalk: ^4.1.0
       debug: 4.3.3
+      esbuild: 0.14.34
+      esbuild-register: 3.3.3
       next: 12.2.5
       react: 18.2.0
       react-dom: 18.2.0
@@ -952,6 +954,8 @@ importers:
       bad-behavior: 1.0.1
       chalk: 4.1.2
       debug: 4.3.3_supports-color@8.1.1
+      esbuild: 0.14.34
+      esbuild-register: 3.3.3_esbuild@0.14.34
       superjson: 1.9.1
       supports-color: 8.1.1
     devDependencies:
@@ -17886,6 +17890,7 @@ packages:
       typescript: 4.6.3
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
+    dev: false
 
   /ts-node/10.7.0_f4af56db12aadddd90c96a09f3ce57e8:
     resolution:
