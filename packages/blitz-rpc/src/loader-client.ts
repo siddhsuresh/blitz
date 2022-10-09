@@ -53,7 +53,7 @@ export async function transformBlitzRpcResolverClient(
   let rpcConfig = require(id).config as ResolverConfig
   unregister()
 
-  if (!rpcConfig) {
+  if (!rpcConfig || resolverType === "query") {
     rpcConfig = {
       httpMethod: "POST",
     }
