@@ -1,5 +1,12 @@
 # @blitzjs/next
 
+## 2.0.0-beta.16
+
+### Patch Changes
+
+- Updated dependencies [ceb7db2]
+  - @blitzjs/rpc@2.0.0-beta.16
+
 ## 2.0.0-beta.15
 
 ### Patch Changes

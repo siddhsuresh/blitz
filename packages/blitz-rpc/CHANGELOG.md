@@ -1,5 +1,13 @@
 # @blitzjs/rpc
 
+## 2.0.0-beta.16
+
+### Patch Changes
+
+- ceb7db2: Add an opt-in GET request support to RPC specification by exporting a `config` object that has the `httpMethod` property.
+  from `query` files.
+  - @blitzjs/auth@2.0.0-beta.16
+
 ## 2.0.0-beta.15
 
 ### Patch Changes
