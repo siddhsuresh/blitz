@@ -14,25 +14,19 @@ import {
 import {isLocalhost, SessionContext} from "../../../index-server"
 
 // next-auth internals
-import oAuthCallback from "./next-auth/packages/next-auth/src/core/lib/oauth/callback"
-import getAuthorizationUrl from "./next-auth/packages/next-auth/src/core/lib/oauth/authorization-url"
-import {init} from "./next-auth/packages/next-auth/src/core/init"
-import {toInternalRequest, toResponse} from "./next-auth/packages/next-auth/src/utils/web"
-import {getBody, getURL, setHeaders} from "./next-auth/packages/next-auth/src/utils/node"
-import type {RequestInternal} from "./next-auth/packages/next-auth/src/core"
-import type {Cookie} from "./next-auth/packages/core/src/lib/cookie"
-import type {
-  AuthAction,
-  AuthOptions,
-  InternalOptions,
-} from "./next-auth/packages/next-auth/src/core/types"
+import oAuthCallback from "next-auth/core/lib/oauth/callback"
+import getAuthorizationUrl from "next-auth/core/lib/oauth/authorization-url"
+import {init} from "next-auth/core/init"
+import type {Cookie} from "next-auth/core/lib/cookie"
+import type {AuthAction, AuthOptions, User} from "next-auth"
 
 import type {
   ApiHandlerIncomingMessage,
   BlitzNextAuthApiHandler,
   BlitzNextAuthOptions,
 } from "./types"
-import type {User} from "next-auth"
+import {toInternalRequest, toResponse} from "./internals/web"
+import {getBody, getURL, setHeaders} from "./internals/node"
 
 const INTERNAL_REDIRECT_URL_KEY = "_redirectUrl"
 
@@ -94,6 +88,7 @@ export function NextAuthAdapter(config: BlitzNextAuthOptions): BlitzNextAuthApiH
       providerId = providerId.split("?")[0]
     }
     const {options, cookies} = await init({
+      // @ts-expect-error
       url: new URL(
         internalRequest.url!,
         process.env.APP_ORIGIN || process.env.BLITZ_DEV_SERVER_ORIGIN,
@@ -133,9 +128,9 @@ export function NextAuthAdapter(config: BlitzNextAuthOptions): BlitzNextAuthApiH
 async function AuthHandler(
   middleware: RequestMiddleware<ApiHandlerIncomingMessage, MiddlewareResponse<Ctx>>[],
   config: BlitzNextAuthOptions,
-  internalRequest: RequestInternal,
+  internalRequest: any,
   action: AuthAction,
-  options: InternalOptions,
+  options: any,
   cookies: Cookie[],
 ) {
   console.log("options", options)

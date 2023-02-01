@@ -45,7 +45,13 @@
     "uuid": "^8.3.1"
   },
   "peerDependencies": {
-    "blitz": "2.0.0-beta.22"
+    "blitz": "2.0.0-beta.22",
+    "next-auth": "4.18.7"
+  },
+  "peerDependenciesMeta": {
+    "next-auth": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@blitzjs/config": "workspace:2.0.0-beta.22",
