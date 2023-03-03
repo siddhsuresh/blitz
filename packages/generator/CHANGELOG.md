@@ -1,5 +1,12 @@
 # @blitzjs/generator
 
+## 2.0.0-beta.24
+
+### Patch Changes
+
+- e228ba5: Fix a type error in reset password templates.
+- 430f0b5: For new applications, update Prisma (`prisma` and `@prisma/client`) from `4.6.0` to `4.6.1` to solve enum issue with postgresql https://github.com/prisma/prisma/issues/16180
+
 ## 2.0.0-beta.23
 
 ### Patch Changes
