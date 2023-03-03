@@ -1,6 +1,6 @@
 {
   "name": "@blitzjs/rpc",
-  "version": "2.0.0-beta.23",
+  "version": "2.0.0-beta.24",
   "homepage": "https://blitzjs.com/",
   "repository": {
     "type": "git",
@@ -35,17 +35,17 @@
     "supports-color": "8.1.1"
   },
   "peerDependencies": {
-    "blitz": "2.0.0-beta.23",
+    "blitz": "2.0.0-beta.24",
     "next": "*",
     "react": "*"
   },
   "devDependencies": {
-    "@blitzjs/auth": "2.0.0-beta.23",
-    "@blitzjs/config": "workspace:2.0.0-beta.23",
+    "@blitzjs/auth": "2.0.0-beta.24",
+    "@blitzjs/config": "workspace:2.0.0-beta.24",
     "@types/debug": "4.1.7",
     "@types/react": "18.0.25",
     "@types/react-dom": "17.0.14",
-    "blitz": "2.0.0-beta.23",
+    "blitz": "2.0.0-beta.24",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
