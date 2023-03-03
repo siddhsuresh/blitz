@@ -21,7 +21,7 @@ Those will throw `AuthenticationError` if the user is not logged in, and
 it will throw `AuthorizationError` if the user is logged in but doesn't
 have the required permissions.
 
-```ts
+```ts copy
 import { resolver } from "@blitzjs/rpc"
 import db from "db"
 import * as z from "zod"
@@ -47,7 +47,7 @@ export default resolver.pipe(
 
 or
 
-```ts
+```ts copy
 import {Ctx} from "blitz"
 import db from "db"
 import * as z from "zod"
@@ -78,7 +78,7 @@ mutations. We recommended using [zod](https://github.com/colinhacks/zod),
 which we include in all our code generation templates. Without this, users
 may be able to access data or perform actions that are forbidden.
 
-```ts
+```ts copy
 import { resolver } from "@blitzjs/rpc"
 import db from "db"
 import * as z from "zod"
@@ -112,7 +112,7 @@ thrown and caught by your top level Error Boundary.
 
 If you want to authorize your pages based on the user's role
 
-```tsx
+```tsx copy
 // user must be logged in and with role "ADMIN" or "USER"
 Page.authenticate = { role: "ADMIN" }
 // or set role as a list, where user must be logged in and with role "ADMIN" or "USER"
@@ -122,7 +122,7 @@ Page.authenticate = { role: ["ADMIN", "USER"] }
 Or if instead you want to redirect the user, set
 `Page.authenticate = {redirectTo: '/login'}`
 
-```tsx
+```tsx copy
 const Page: BlitzPage = () => {
   return <div>{/* ... */}</div>
 }
@@ -144,7 +144,7 @@ For pages that are only for logged out users, such as login and signup
 pages, set `Page.redirectAuthenticatedTo = '/'` to automatically redirect
 logged in users to another page.
 
-```tsx
+```tsx copy
 import { Routes } from "@blitzjs/next"
 
 const Page: BlitzPage = () => {
@@ -168,7 +168,7 @@ export default Page
 
 You can secure layouts as you secure pages:
 
-```tsx
+```tsx copy
 const Layout = ({ children }) => {
   return <div>{children}</div>
 }
@@ -196,7 +196,7 @@ Blitz will take the first component it finds from the response of
 These values can be overwritten in a per-page basis with
 `Page.authenticate` or `Page.redirectAuthenticatedTo`:
 
-```tsx
+```tsx copy
 const Layout: BlitzLayout = ({ children }) => {
   return <div>{children}</div>
 }
@@ -238,7 +238,7 @@ The default error handling setup in new Blitz apps is as follows:
 And here's the default `RootErrorFallback` that's in `src/pages/_app.tsx`.
 You can customize it as required for your needs.
 
-```tsx
+```tsx copy
 import { AuthenticationError, AuthorizationError } from "blitz"
 import { ErrorComponent, ErrorFallbackProps } from "@blitzjs/next"
 
@@ -288,7 +288,7 @@ exist on the very first render on the client. This causes a quick "flash"
 on first load. You can fix that by setting
 `Page.suppressFirstRenderFlicker = true`.
 
-```tsx
+```tsx copy
 import { useSession } from "@blitzjs/auth"
 
 const session = useSession()
@@ -310,7 +310,7 @@ However, if you need access to user data that would be insecure to store
 in the session's `publicData`, you would need to use `useCurrentUser()`
 instead of `useSession()`.
 
-```tsx
+```tsx copy
 import { useCurrentUser } from "src/users/hooks/useCurrentUser"
 
 const user = useCurrentUser()
@@ -337,7 +337,7 @@ Always returns a boolean indicating if user is authorized
 **Throws an error** if the user is not authorized. This is what you most
 commonly use to secure your queries and mutations.
 
-```ts
+```ts copy
 import { Ctx } from "blitz"
 import { GetUserInput } from "./somewhere"
 
@@ -374,7 +374,7 @@ module.exports = {
 
 And if using TypeScript, set the type in `types.ts` like this:
 
-```ts
+```ts copy
 import { SimpleRolesIsAuthorized } from "@blitzjs/auth"
 
 type Role = "ADMIN" | "USER"
@@ -392,7 +392,7 @@ declare module "@blitzjs/auth" {
 
 Example usage:
 
-```ts
+```ts copy
 // User not logged in
 ctx.session.$isAuthorized() // false
 
@@ -406,7 +406,7 @@ ctx.session.$isAuthorized("admin") // false
 
 Example usage:
 
-```ts
+```ts copy
 // User not logged in
 ctx.session.$authorize() // throws AuthenticationError
 
@@ -422,7 +422,7 @@ ctx.session.$authorize(["admin", "customer"]) // success - no error
 An `isAuthorized` adapter must conform to the following function
 signature.
 
-```ts
+```ts copy
 type CustomIsAuthorizedArgs = {
   ctx: any
   args: [/* args that you want for session.$authorize(...args) */]
@@ -440,7 +440,7 @@ export function customIsAuthorized({
 Here's the source code for the `simpleRolesIsAuthorized` adapter include
 in Blitz core as of Jan 26, 2021.
 
-```ts
+```ts copy
 type SimpleRolesIsAuthorizedArgs = {
   ctx: any
   args: [roleOrRoles?: string | string[]]

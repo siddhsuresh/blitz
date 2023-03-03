@@ -35,7 +35,7 @@ To use, import from `blitz` and use like any JavaScript Error. If you're
 curious, you can
 [see the source code for these](https://github.com/blitz-js/blitz/blob/canary/packages/core/src/errors.ts).
 
-```ts
+```ts copy
 import { AuthenticationError } from "blitz"
 
 try {
@@ -62,7 +62,7 @@ By default, new Blitz applications include a top-level `ErrorBoundary` and
 
 It looks something like this:
 
-```tsx
+```tsx copy
 // app/pages/_app.tsx
 import { AppProps, ErrorBoundary, ErrorComponent } from "@blitzjs/next"
 import { useQueryErrorResetBoundary } from "@blitzjs/rpc"
@@ -129,7 +129,7 @@ you handle the error.
 Here's an example of how to create a custom error. It's a JavaScript
 class, so you can be as creative as you want.
 
-```ts
+```ts copy
 import SuperJson from "superjson"
 
 export class UsernameTakenError extends Error {
@@ -154,7 +154,7 @@ custom error properties are omitted for security concerns.
 Then on the client, you can use a `FallbackComponent` like above, or you
 can handle the error in your form submit handler like this.
 
-```tsx
+```tsx copy
 <Form
   onSubmit={async (values) => {
     try {

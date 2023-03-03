@@ -20,7 +20,7 @@ It returns this tuple array,`[queryResult, queryExtras]`, where
 automatically provides awesome features such as automatic caching and
 revalidation.
 
-```ts
+```ts copy
 import { useQuery } from "@blitzjs/rpc"
 import getProject from "src/projects/queries/getProject"
 
@@ -87,7 +87,7 @@ Dependent queries are queries that depend on previous ones to finish
 before they can execute. To do this, use the enabled option to tell a
 query when it is ready to turn on:
 
-```tsx
+```tsx copy
 const [user] = useQuery(getUser, { where: { id: props.query.id } })
 const [projects] = useQuery(getProjects, { where: { userId: user.id } }, { enabled: user }))
 ```
@@ -105,13 +105,13 @@ Use the [`useInfiniteQuery`](./use-infinite-query) hook
 All queries are automatically cached, so both of the following will cache
 the `getProject` query.
 
-```ts
+```ts copy
 import { invoke } from "@blitzjs/rpc"
 
 const project = await invoke(getProject, { where: { id: props.id } })
 ```
 
-```tsx
+```tsx copy
 <a onMouseEnter={() => invoke(getProject, { where: { id: props.id } })}>
   View Project
 </a>
@@ -126,7 +126,7 @@ rendered on the server.
 
 The following example demonstrates how prefetching works in Blitz.
 
-```tsx
+```tsx copy
 import { gSSP } from "src/blitz-server"
 import getProject from "src/projects/queries/getProject"
 
@@ -162,7 +162,7 @@ read more about it
 
 You can also manually cancel queries by using `cancelQueries` method:
 
-```tsx
+```tsx copy
 import { getQueryClient, getQueryKey, useQuery } from "@blitzjs/rpc"
 
 const [data] = useQuery(getTodos)
@@ -188,7 +188,7 @@ return (
 
 ### `getStaticProps` {#get-static-props}
 
-```tsx
+```tsx copy
 import getProject from "src/projects/queries/getProject"
 import { gSP } from "src/blitz-server"
 
@@ -208,7 +208,7 @@ export default ProjectPage
 
 ### `getServerSideProps` {#get-server-side-props}
 
-```tsx
+```tsx copy
 import getProject from "src/projects/queries/getProject"
 import { gSSP } from "src/blitz-server"
 

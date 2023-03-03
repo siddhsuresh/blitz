@@ -204,7 +204,7 @@ expect(
 Not all modifications can be performed using `jscodeshift`. For any other
 transformations, you can use `transformPlain`:
 
-```ts
+```ts copy
 builder.addTransformFilesStep({
   // ...
   singleFileSearch: "README.md",
@@ -221,7 +221,7 @@ This step would append "Paul Plain was here!" to the user's README.md
 Sometimes you need to print a simple message, or give some instructions,
 you can achieve that with `printMessage`
 
-```ts
+```ts copy
 builder.printMessage({
   successIcon: "ℹ️",
   stepId: "oops",
@@ -238,7 +238,7 @@ terminal and wait for the user to go to the next step.
 If you want to customize your recipe even further, you can pass an
 optional `successIcon` param to your steps.
 
-```ts
+```ts copy
 builder.addTransformFilesStep({
   successIcon: "🔧",
   // ...
@@ -260,7 +260,7 @@ schema modifications:
 
 ##### Create an Enum
 
-```ts
+```ts copy
 singleFileSearch: paths.prismaSchema(),
 transformPlain(source: string) {
   // Create the enum Role with two values, USER and ADMIN
@@ -277,7 +277,7 @@ transformPlain(source: string) {
 
 ##### Add a Field to a Model
 
-```ts
+```ts copy
 singleFileSearch: paths.prismaSchema(),
 transformPlain(source: string) {
   // Add a field "name String @unique" to the "Project" model
@@ -293,7 +293,7 @@ transformPlain(source: string) {
 
 ##### Create a Generator
 
-```ts
+```ts copy
 singleFileSearch: paths.prismaSchema(),
 transformPlain(source: string) {
   // Create a prisma generator for nexus-prisma
@@ -309,7 +309,7 @@ transformPlain(source: string) {
 
 ##### Create a Model
 
-```ts
+```ts copy
 singleFileSearch: paths.prismaSchema(),
 transformPlain(source: string) {
   // Create a prisma model called Project
@@ -323,7 +323,7 @@ transformPlain(source: string) {
 
 ##### Add an Attribute such as an Index to a Model
 
-```ts
+```ts copy
 singleFileSearch: paths.prismaSchema(),
 transformPlain(source: string) {
   // Creates an index attribute on the Project model "@@index([name])"
@@ -343,7 +343,7 @@ transformPlain(source: string) {
 Since a prisma schema can only have one data source, there is no "add"
 utility, this will replace the schema's current data source.
 
-```ts
+```ts copy
 singleFileSearch: paths.prismaSchema(),
 transformPlain(source: string) {
   // Set the datasource to postgresql
@@ -371,7 +371,7 @@ object format that you can modify using JavaScript, then print the schema
 (with your changes applied) back out to a string. All of the above helpers
 are implemented using `produceSchema`.
 
-```ts
+```ts copy
 builder.addTransformFilesStep({
   // ...
   singleFileSearch: paths.prismaSchema(),
@@ -417,7 +417,7 @@ fortunate enough to be able to use the `paths` provided by the
 `blitz/installer` module. You can pass this into your `singleFileSearch`
 and use `jscodeshift` to modify it.
 
-```ts
+```ts copy
 builder.addTransformFilesStep({
   // ...
   singleFileSearch: paths.blitzConfig(),
@@ -434,7 +434,7 @@ The `transformNextConfig` function can be imported from the
 you modify it. It takes a `program` as an argument, and returns helper
 functions to use.
 
-```ts
+```ts copy
 builder.addTransformFilesStep({
   // ...
   singleFileSearch: paths.blitzConfig(),
@@ -468,7 +468,7 @@ statement - you can use
 `transformNextConfig(program).addRequireStatement(identifier, packageName)`
 for this.
 
-```ts
+```ts copy
 builder.addTransformFilesStep({
   // ...
   singleFileSearch: paths.blitzConfig(),
@@ -494,7 +494,7 @@ middleware from a recipe.
 The `addBlitzMiddleware` function can be imported from the
 `blitzjs/installer` module.
 
-```ts
+```ts copy
 import { addBlitzMiddleware } from "blitz/installer"
 ```
 
@@ -505,7 +505,7 @@ function we want to add as middleware.
 Using a transformation step, we can take advantage of `singleFileSearch`,
 construct our middleware, and add it.
 
-```ts
+```ts copy
 builder.addTransformFilesStep({
   // ...
   singleFileSearch: paths.blitzConfig(),
@@ -537,7 +537,7 @@ builder.addTransformFilesStep({
 
 In this case, the resulting middleware is added to your blitz server file:
 
-```ts
+```ts copy
 export const { gSSP, gSP, api } = setupBlitzServer({
   // ...
   plugins: [
@@ -555,7 +555,7 @@ export const { gSSP, gSP, api } = setupBlitzServer({
 You may want to modify the user's `_app` page and wrap whatever is in the
 return statement:
 
-```ts
+```ts copy
 function MyApp({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
   return (
@@ -573,7 +573,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 searches for `MyApp` then wraps whatever is returned with a JSX component
 identified by the element string passed.
 
-```ts
+```ts copy
 import {..., wrapAppWithProvider} from "blitz/installer"
 ...
 addTransformFilesStep({
@@ -595,7 +595,7 @@ fortunate enough to be able to use the `paths` provided by the
 `blitz/installer`. You can pass this into your `singleFileSearch` and use
 `jscodeshift` to modify it.
 
-```ts
+```ts copy
 builder.addTransformFilesStep({
   // ...
   singleFileSearch: paths.babelConfig(),
@@ -612,7 +612,7 @@ JSON object and it will be transformed. This argument has to be either the
 name of the plugin/preset (as a string) or a array with two elements: the
 name of the plugin/preset and its configuration.
 
-```ts
+```ts copy
 builder.addTransformFilesStep({
   // ...
   singleFileSearch: paths.babelConfig(),
@@ -634,7 +634,7 @@ In case you have a recipe which should run an external command like
 
 Example usage:
 
-```ts
+```ts copy
 builder.addRunCommandStep({
   stepId: "runCommand",
   stepName: "Generate prisma client",

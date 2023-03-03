@@ -47,7 +47,7 @@ npm i @blitzjs/next # yarn add @blitzjs/next # pnpm add @blitzjs/next
 Blitz.js extends the `next.config.js` file by accepting a `blitz`
 property.
 
-```ts
+```ts copy
 blitz?: {
   resolverPath?: ResolverPathOptions;
   customServer?: {
@@ -67,7 +67,7 @@ blitz?: {
 
 Inside `src/blitz-client.ts`:
 
-```ts
+```ts copy
 import {setupBlitzClient} from "@blitzjs/next"
 
 export const {withBlitz} = setupBlitzClient({
@@ -78,7 +78,7 @@ export const {withBlitz} = setupBlitzClient({
 Then inside `src/pages/_app.tsx` wrap `MyApp` function with the
 `withBlitz` HOC component.
 
-```ts
+```ts copy
 import {ErrorFallbackProps, ErrorComponent, ErrorBoundary} from "@blitzjs/next"
 import {AuthenticationError, AuthorizationError} from "blitz"
 import type {AppProps} from "next/app"
@@ -123,7 +123,7 @@ export default withBlitz(MyApp)
 
 ### API
 
-```ts
+```ts copy
 setupBlitzClient({
   plugins: [],
 })
@@ -144,7 +144,7 @@ An object with the `withBlitz` HOC wrapper
 
 Inside `src/blitz-server.ts`
 
-```ts
+```ts copy
 import {setupBlitzServer} from "@blitzjs/next"
 
 export const {gSSP, gSP, api} = setupBlitzServer({
@@ -154,7 +154,7 @@ export const {gSSP, gSP, api} = setupBlitzServer({
 
 ### API
 
-```ts
+```ts copy
 setupBlitzServer({
   plugins: [],
   onError?: (err) => void
@@ -200,7 +200,7 @@ Next.js request handler.
 
 #### getStaticProps
 
-```ts
+```ts copy
 import {gSP} from "src/blitz-server"
 
 export const getStaticProps = gSP(async ({ctx}) => {
@@ -220,7 +220,7 @@ export const getStaticProps = gSP(async ({ctx}) => {
 
 #### getServerSideProps
 
-```ts
+```ts copy
 import {gSSP} from "src/blitz-server"
 
 export const getServerSideProps = gSSP(async ({ctx}) => {
@@ -235,7 +235,7 @@ export const getServerSideProps = gSSP(async ({ctx}) => {
 
 #### api
 
-```ts
+```ts copy
 import {api} from "src/blitz-server"
 
 export default api(async (req, res, ctx) => {
@@ -256,7 +256,7 @@ We’re going to use the `getCurrentUser` query inside
 if the user is logged in on the server and use the built-in Next.js
 redirect property.
 
-```ts
+```ts copy
 import {Routes, BlitzPage} from "@blitzjs/next"
 import {gSSP} from "src/blitz-server"
 import getCurrentUser from "src/users/queries/getCurrentUser"
@@ -290,7 +290,7 @@ with the `BlitzPage` type.
 So for example, we can use some typescript utilities to help use get the
 types returned by `getCurrentUser()`
 
-```ts
+```ts copy
 import {Routes, BlitzPage} from "@blitzjs/next"
 import {gSSP} from "src/blitz-server"
 import getCurrentUser from "src/users/queries/getCurrentUser"
@@ -341,7 +341,7 @@ mounted. Though, this is expected behaviour, there is a workaround.
 For an example, in a query where the user is not found you can create a
 `NotFoundError()` then return the status code.
 
-```ts
+```ts copy
 export default resolver.pipe(resolver.zod(GetUser), async (input) => {
   const {id} = input
 
@@ -364,7 +364,7 @@ Then on the server (in this case `getServerSideProps()`) you can call the
 query and if the error key is found in the return object then show an
 error.
 
-```ts
+```ts copy
 export const getServerSideProps = gSSP(async ({ ctx }) => {
 
   const user = await getUser({ 1 }, ctx)
@@ -379,7 +379,7 @@ export const getServerSideProps = gSSP(async ({ ctx }) => {
 You can also catch server errors in `_app.tsx` and show the errors with a
 toast component.
 
-```tsx
+```tsx copy
 function MyApp({Component, pageProps}: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
   if (pageProps.error) {

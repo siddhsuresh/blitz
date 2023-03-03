@@ -15,7 +15,7 @@ component above it in the tree. Or you can set
 
 ### Example {#example}
 
-```ts
+```ts copy
 import { useSession } from "@blitzjs/auth"
 
 function SomeComponent() {
@@ -48,7 +48,7 @@ This will throw `AuthenticationError` if the user is not logged in
 
 ### Example {#example-1}
 
-```ts
+```ts copy
 import { useAuthenticatedSession } from "@blitzjs/auth"
 
 const session = useAuthenticatedSession()
@@ -74,7 +74,7 @@ This will throw `AuthenticationError` if the user is not logged in
 
 ### Example {#example-2}
 
-```ts
+```ts copy
 import { useAuthorize } from "@blitzjs/auth"
 
 useAuthorize()
@@ -97,7 +97,7 @@ for logged out users.
 
 ### Example {#example-3}
 
-```ts
+```ts copy
 import { useRedirectAuthenticated } from "@blitzjs/auth"
 
 useRedirectAuthenticated("/dashboard")

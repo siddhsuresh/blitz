@@ -6,7 +6,7 @@ sidebar_label: Route Manifest
 Blitz generates a _Route Manifest_ for you. It allows you to refer to a
 page by _name_ instead of _location_:
 
-```tsx
+```tsx copy
 // Assume you have a page at app/pages/products/[productId].tsx
 export default function ProductsPage() { ...
 
@@ -31,7 +31,7 @@ though:
 
 Query parameters can be specified together with route parameters.
 
-```tsx
+```tsx copy
 // instead of ...
 <Link href={`/products/${pid}?offerCode=capybara`} />
 

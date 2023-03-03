@@ -78,7 +78,7 @@ The plugin can then be used to return the following:
 To create a client plugin, create a new file, for example
 `src/custom-plugin/plugin.tsx`, and add the following code:
 
-```tsx
+```tsx copy
 // src/custom-plugin/plugin.tsx
 import { createClientPlugin } from "blitz"
 import { BlitzPage } from "@blitzjs/next"
@@ -142,7 +142,7 @@ export const BlitzCustomPlugin = createClientPlugin<
 To initialise the created client plugin, you could import it in the
 `src/blitz-client` and add it to the `plugins` array as shown below:
 
-```ts
+```ts copy
 // src/blitz-client.ts
 import { AuthClientPlugin } from "@blitzjs/auth"
 import { setupBlitzClient } from "@blitzjs/next"
@@ -163,7 +163,7 @@ export const { withBlitz } = setupBlitzClient({
 The following example shows how to create a plugin that adds a custom
 header to your RPC requests
 
-```ts
+```ts copy
 export const BlitzCustomPlugin = createClientPlugin<
   CustomPluginOptions,
   {}

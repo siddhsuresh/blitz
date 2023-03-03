@@ -8,7 +8,7 @@ sidebar_label: Server-Side APIs
 `SessionContext` is available off of `ctx` which is provided as the second
 parameter to all queries and mutations.
 
-```ts
+```ts copy
 // src/queries/someQuery.ts
 import { Ctx } from "blitz"
 
@@ -27,7 +27,7 @@ export default async function someQuery(input: any, ctx: Ctx) {
 You can get the session context inside `getServerSideProps` by wrapping it
 with the `gSSP` function exported from `src/blitz-server`:
 
-```ts
+```ts copy
 import { SessionContext } from "@blitzjs/auth"
 import { gSSP } from "src/blitz-server"
 
@@ -59,7 +59,7 @@ export default PageWithGssp
 You can get the session context inside API routes by wrapping it with the
 `api` function exported from `src/blitz-server`:
 
-```ts
+```ts copy
 import { api } from "src/blitz-server"
 import db from "db"
 
@@ -84,7 +84,7 @@ like password resets.
 
 #### Example Usage
 
-```ts
+```ts copy
 import { generateToken } from "@blitzjs/auth"
 
 const token = generateToken()
@@ -106,7 +106,7 @@ when the only value you have to reference is the hashed key.
 
 #### Example Usage
 
-```ts
+```ts copy
 import { hash256 } from "@blitzjs/auth"
 
 const hashedToken = hash256(token)
@@ -118,7 +118,7 @@ const hashedToken = hash256(token)
 [secure-password](https://github.com/emilbayes/secure-password) to provide
 a nice way to hash passwords and verify password hashes.
 
-```ts
+```ts copy
 import { SecurePassword } from "@blitzjs/auth"
 
 await SecurePassword.hash(password)
@@ -161,7 +161,7 @@ Size of the `hash` Buffer returned by `hash` and `hashSync` and used by
 
 #### Example Usage
 
-```ts
+```ts copy
 import { AuthenticationError } from "blitz"
 import { SecurePassword } from "@blitzjs/auth"
 import db from "db"
@@ -202,7 +202,7 @@ enforced as soon as the user is doing the next request.
 
 #### Example Usage
 
-```ts
+```ts copy
 import { setPublicDataForUser } from "@blitzjs/auth"
 import db from "db"
 

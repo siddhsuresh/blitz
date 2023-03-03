@@ -15,7 +15,7 @@ handler or effect.
 `useMutation` is a thin layer on top of the `useMutation` hook from
 [`react-query`](https://github.com/tannerlinsley/react-query).
 
-```tsx
+```tsx copy
 import {useMutation} from '@blitzjs/rpc'
 import updateProject from 'app/projects/mutations/updateProject'
 
@@ -65,7 +65,7 @@ exactly like you'd expect. So you can wrap the `invoke` in
   initial query to ensure it has the correct data. Disable refetch by
   passing an options object `{refetch: false}` as the second argument.
 
-```tsx
+```tsx copy
 export default function (props: { query: { id: number } }) {
   const [product, { setQueryData }] = useQuery(getProduct, {
     where: { id: props.query.id },
@@ -95,7 +95,7 @@ export default function (props: { query: { id: number } }) {
 [`useQuery`](./use-query) returns a `refetch` function you can use to
 trigger a query reload.
 
-```tsx
+```tsx copy
 export default function (props) {
   const [product, { refetch }] = useQuery(getProduct, {
     where: { id: props.id },
@@ -130,7 +130,7 @@ function provided by `blitz`.
 
 ##### Example
 
-```tsx
+```tsx copy
 import { invalidateQuery } from "@blitzjs/rpc" // highlight-line
 import getProducts from "app/products/queries/getProducts"
 
@@ -175,7 +175,7 @@ optionally show an error message.
 Here's a simple form component with an `onSubmit` function that calls an
 `updateProduct` mutation to save edits.
 
-```tsx
+```tsx copy
 export default function (props: { query: { id: number } }) {
   const [product, { setQueryData }] = useQuery(getProduct, {
     where: { id: props.query.id },
@@ -207,7 +207,7 @@ We pass `{refetch: false}` as a second argument to the setQueryData()
 function to prevent the mutation triggering a refetch of stale data while
 we wait for the response.
 
-```tsx
+```tsx copy
 export default function (props: { query: { id: number } }) {
   const [product, { setQueryData }] = useQuery(getProduct, {
     where: { id: props.query.id },

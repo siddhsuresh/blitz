@@ -170,7 +170,7 @@ Next let's create your first page.
 Open the file `pages/index.tsx` and replace the contents of the `Home`
 component with this:
 
-```tsx
+```tsx copy
 //...
 
 const Home: BlitzPage = () => {
@@ -368,7 +368,7 @@ meantime, let's fix the generated pages.
 Jump over to `src/pages/questions/index.tsx`. Notice that a
 `QuestionsList` component has been generated for you:
 
-```tsx
+```tsx copy
 // src/pages/questions/index.tsx
 
 export const QuestionsList = () => {
@@ -530,7 +530,7 @@ deleting a `Question`. We need to temporarily augment the generated
 `src/questions/mutations/deleteQuestion.ts` in your text editor and add
 the following to the top of the function body:
 
-```ts
+```ts copy
 await db.choice.deleteMany({ where: { questionId: id } })
 ```
 
@@ -847,7 +847,7 @@ going to improve this page somewhat.
 3. Delete the `pre` element, and copy in our choices list which we wrote
    before:
 
-```tsx
+```tsx copy
 <ul>
   {question.choices.map((choice) => (
     <li key={choice.id}>
@@ -899,7 +899,7 @@ following changes:
 
 In our `li`, add a `button` like so:
 
-```tsx
+```tsx copy
 <li key={choice.id}>
   {choice.text} - {choice.votes} votes
   <button>Vote</button>
@@ -948,13 +948,13 @@ And then we need to update the question `useQuery` call to return the
 
 Finally, we’ll tell our new `button` to call that function!
 
-```tsx
+```tsx copy
 <button onClick={() => handleVote(choice.id)}>Vote</button>
 ```
 
 The final `Question` component should now look like this:
 
-```tsx
+```tsx copy
 export const Question = () => {
   const router = useRouter()
   const questionId = useParam("questionId", "number")

@@ -25,7 +25,7 @@ complex resolvers.
 A pipe automatically pipes the output of one function into the next
 function. Here's a non-Blitz example:
 
-```ts
+```ts copy
 // Without pipe
 export function (input1) {
   const output1 = function1(input1)
@@ -51,7 +51,7 @@ export pipe(
 
 ### Example {#example}
 
-```ts
+```ts copy
 import { resolver } from "@blitzjs/rpc"
 import db from "db"
 import * as z from "zod"
@@ -146,7 +146,7 @@ validating the input data at runtime.
 
 ### Example {#example-1}
 
-```ts
+```ts copy
 import { resolver } from "@blitzjs/rpc"
 import * as z from "zod"
 
@@ -190,7 +190,7 @@ context object.
 
 ### Example {#example-2}
 
-```ts
+```ts copy
 import { resolver } from "@blitzjs/rpc"
 
 export default resolver.pipe(
@@ -225,7 +225,7 @@ This is a handy utility for query pagination
 
 ### Example {#example-3}
 
-```ts
+```ts copy
 import { paginate, Ctx } from "@blitzjs/rpc"
 import db, { Prisma } from "db"
 

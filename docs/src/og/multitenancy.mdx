@@ -82,7 +82,7 @@ Then you will need to update your `signup` mutation to also create an
 organization and membership at the same time as you create the user. Like
 this:
 
-```ts
+```ts copy
 const user = await db.user.create({
   data: {
     // ...
@@ -139,7 +139,7 @@ will need to add `orgId` and update `roles`.
 
 It will look something like this:
 
-```ts
+```ts copy
 await session.$create({
   userId: user.id,
   roles: [user.role, user.memberships[0].role],
@@ -155,7 +155,7 @@ your queries based on the current organization.
 You must filter all your queries by `organizationId` to ensure one user
 cannot see another user's private data.
 
-```ts
+```ts copy
 import db from "db"
 
 // If you accept only the `id` as input
@@ -180,7 +180,7 @@ const projects = await db.project.findMany({
 When creating new entities, make sure you attach them to the current
 organization. Here's an example of how to do that:
 
-```ts
+```ts copy
 import { resolver } from "@blitzjs/rpc"
 import db from "db"
 import * as z from "zod"
@@ -217,7 +217,7 @@ entity belonging to a different organization. You could first make a
 `organizationId` to the `db.update` `where` input. This update call will
 fail if the organizationId doesn't match.
 
-```ts
+```ts copy
 import { resolver } from "@blitzjs/rpc"
 import db from "db"
 import * as z from "zod"
@@ -252,7 +252,7 @@ export default resolver.pipe(
 You can do more advanced things like calling `ctx.session.$authorize()`
 inside an if/else
 
-```ts
+```ts copy
 import { resolver } from "@blitzjs/rpc"
 import db, { GlobalRole, MembershipRole } from "db"
 import * as z from "zod"
@@ -299,7 +299,7 @@ Here's some advanced utilities that allow you to do authorization in a way
 that allows SUPERADMINs to access all organizations but only permits
 regular users to access the organization they are currently logged in to.
 
-```ts
+```ts copy
 // src/orders/queries/getOrder.ts
 import { NotFoundError } from "blitz"
 import { resolver } from "@blitzjs/rpc"
@@ -339,7 +339,7 @@ export default resolver.pipe(
 )
 ```
 
-```ts
+```ts copy
 // src/core/utils.ts
 import { Ctx } from "blitz"
 import { Prisma, GlobalRole } from "db"

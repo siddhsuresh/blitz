@@ -11,7 +11,7 @@ inside the blitz property.
 To change how every file path is resolved, you can set the `resolverPath`
 option inside `next.config.js`.
 
-```ts
+```ts copy
 module.exports = withBlitz({
   blitz: {
     resolverPath: "queries|mutations",
@@ -60,7 +60,7 @@ File: src/products/mutations/v2/createProduct.ts
 Inside the `blitz` property add the param `includeRPCFolders` as an array
 of relative path folders from your Blitz root folder. For example:
 
-```ts
+```ts copy
 module.exports = withBlitz({
   blitz: {
     includeRPCFolders: ["../../<YOUR DIRECTORY PATH>"],

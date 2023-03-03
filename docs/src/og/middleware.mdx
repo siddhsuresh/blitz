@@ -31,7 +31,7 @@ Blitz-compatible server plugin.
 
 ### Example {#blitz-server-middleware-example}
 
-```ts
+```ts copy
 ...
 import {BlitzServerMiddleware} from "blitz"
 import {BlitzGuardMiddleware} from "@blitz-guard/core/dist/middleware"
@@ -55,7 +55,7 @@ export const { gSSP, gSP, api } = setupBlitzServer({
 
 ### API {#blitz-server-middleware-api}
 
-```ts
+```ts copy
 BlitzServerMiddleware(middleware())
 ```
 
@@ -78,7 +78,7 @@ from `blitz`.
 You can extend the `Ctx` type by placing the following file in your
 project.
 
-```ts
+```ts copy
 // types.ts
 declare module "blitz" {
   export interface Ctx {
@@ -90,7 +90,7 @@ declare module "blitz" {
 Whatever types you add to `Ctx` will be automatically available in your
 queries and mutations as shown here.
 
-```ts
+```ts copy
 import { Ctx } from "blitz"
 
 export default async function getThing(input, ctx: Ctx) {
@@ -200,7 +200,7 @@ There are two ways to short circuit the request:
 Another uncommon way to handle a middleware error is to pass it to the
 query/mutation and then throw the error from there.
 
-```ts
+```ts copy
 // In middleware
 res.blitzCtx.error = new Error()
 
@@ -213,7 +213,7 @@ if (ctx.error) throw ctx.error
 Blitz provides a `connectMiddleware()` function that converts connect
 middleware to Blitz middleware.
 
-```ts
+```ts copy
 // blitz.config.js
 const { connectMiddleware } = require("blitz")
 const Cors = require("cors")

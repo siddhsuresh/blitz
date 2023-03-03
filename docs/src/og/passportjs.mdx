@@ -17,7 +17,7 @@ supported. In the Twitter example below, the second argument to
 Add a new api route at `src/pages/api/auth/[...auth].ts` with the
 following contents.
 
-```ts
+```ts copy
 // src/pages/api/auth/[...auth].ts
 import { passportAuth } from "@blitzjs/auth"
 import { api } from "src/blitz-server"
@@ -66,7 +66,7 @@ You may need to set `secureProxy` option to `true` in case your app is
 located behind SSL proxy (Nginx). Proxy should be set to manage
 `forwarded` or `x-forwarded-proto` header correctly.
 
-```ts
+```ts copy
 // src/pages/api/auth/[...auth].ts
 import { passportAuth } from "@blitzjs/auth"
 import { api } from "src/blitz-server"
@@ -93,7 +93,7 @@ then access the session context via `ctx.session` or the request object if
 you need to include custom parameters in your passport strategies (e.g.,
 invitation codes, referal codes).
 
-```ts
+```ts copy
 // src/pages/api/auth/[...auth].ts
 import { passportAuth } from "@blitzjs/auth"
 import { api } from "src/blitz-server"
@@ -130,7 +130,7 @@ Here's an example of adding `passport-twitter`.
 Note that the `callbackURL` uses the callback endpoint as described above
 (`/api/auth/twitter/callback`)
 
-```ts
+```ts copy
 import { passportAuth } from "@blitzjs/auth"
 import { api } from "src/blitz-server"
 import db from "db"
@@ -196,7 +196,7 @@ Add a link to your app with URL format of `/api/auth/[strategyName]`.
 
 For the above twitter example, the link would be like this:
 
-```tsx
+```tsx copy
 <a href="/api/auth/twitter">Log In With Twitter</a>
 ```
 
@@ -215,13 +215,13 @@ app**.
 **To create a new Blitz session**, you need to call the `done()` function
 from your `verify` callback.
 
-```ts
+```ts copy
 done(undefined, result)
 ```
 
 where `result` is an object of type `VerifyCallbackResult`
 
-```ts
+```ts copy
 export type VerifyCallbackResult = {
   publicData: PublicData
   privateData?: Record<string, any>
@@ -238,7 +238,7 @@ If instead, you want to prevent creating a session because of some error,
 then call `done()` with an error as the first argument. The user will then
 be redirected back to the correct location.
 
-```ts
+```ts copy
 return done(new Error("it broke"))
 ```
 
@@ -283,7 +283,7 @@ Some strategies have to call an option like `scope` or `successMessage`
 inside the `passport.authenticate()` method. Add these options to the
 `passportAuth` object like this:
 
-```ts
+```ts copy
 import { passportAuth } from "@blitzjs/auth"
 import { api } from "src/blitz-server"
 import db from "db"
@@ -356,7 +356,7 @@ For example, for a Twitter startegy, the API routes will be:
 override the name and provide a custom one, you can specify a `name`
 parameter:
 
-```ts
+```ts copy
 export default api(
   passportAuth({
     successRedirectUrl: "/",

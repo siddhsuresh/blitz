@@ -157,7 +157,7 @@ project:
 
 1. `blitz-server.ts`:
 
-```ts
+```ts copy
 import { setupBlitzServer } from "@blitzjs/next"
 import {
   AuthServerPlugin,
@@ -181,7 +181,7 @@ export { gSSP, gSP, api }
 
 2. `blitz-client.ts`:
 
-```ts
+```ts copy
 import { AuthClientPlugin } from "@blitzjs/auth"
 import { setupBlitzClient } from "@blitzjs/next"
 import { BlitzRpcPlugin } from "@blitzjs/rpc"
@@ -201,7 +201,7 @@ export const { withBlitz } = setupBlitzClient({
 To setup the Zero-API layer, you'd need to create a
 `src/pages/api/rpc/[[...blitz]].ts` file with the following content:
 
-```ts
+```ts copy
 import { rpcHandler } from "@blitzjs/rpc"
 import { api } from "src/blitz-server"
 
@@ -227,7 +227,7 @@ All your API Routes have to be inside of the `src/pages/api` directory.
 To use Blitz on the client, you also have to use the `withBlitz` function
 in your App component.
 
-```ts
+```ts copy
 import { withBlitz } from "src/blitz-client"
 
 function App({ Component, pageProps }: AppProps) {
@@ -242,7 +242,7 @@ export default withBlitz(App)
 Blitz no longer exports `useRouterQuery`. You'll need to use the
 `useRouter` function instead.
 
-```ts
+```ts copy
 import { useRouter } from "next/router"
 ```
 
@@ -260,7 +260,7 @@ To learn more about it, follow the [`@blitzjs/next` docs](./blitzjs-next).
 If you're using `queryClient` in your code, you can replace it with the
 following code:
 
-```ts
+```ts copy
 import { getQueryClient } from "@blitzjs/rpc"
 
 const queryClient = getQueryClient()

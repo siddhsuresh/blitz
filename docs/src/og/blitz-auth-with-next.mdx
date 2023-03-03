@@ -46,7 +46,7 @@ Let’s create an `src` directory and start with the former.
 
 Create a new file — `blitz-client.ts` and add the following content:
 
-```ts
+```ts copy
 // src/blitz-client.ts:
 import { AuthClientPlugin } from "@blitzjs/auth"
 import { setupBlitzClient } from "@blitzjs/next"
@@ -72,7 +72,7 @@ export it and reuse in the server setup.
 Now we can proceed with the server-side configuration. In the same
 directory, we’ll add `blitz-server.ts` file:
 
-```ts
+```ts copy
 // src/blitz-server.ts
 import { setupBlitzServer } from "@blitzjs/next"
 import {
@@ -161,7 +161,7 @@ And we’ll use its CLI to initialize a new Prisma client:
 We also need to create a new Prisma client. For that, create an `index.ts`
 file in the `prisma` directory with the following content:
 
-```ts
+```ts copy
 // prisma/index.ts
 import { PrismaClient } from "@prisma/client"
 
@@ -216,7 +216,7 @@ The methods are:
 
 You can use any database or API, but in this guide, we’ll show a Redis example:
 
-```ts
+```ts copy
 import IoRedis from "ioredis"
 import { setupBlitz } from "@blitzjs/next"
 import {
@@ -385,7 +385,7 @@ minimal and focus only on how to setup Blitz Auth with Next.js. Before
 using it in your applications, you should extend and modify it
 accordingly.
 
-```ts
+```ts copy
 // pages/api/signup.ts
 
 import { SecurePassword } from "@blitzjs/auth"
@@ -420,7 +420,7 @@ As we have the backend logic for sign-up, we can call the new endpoint
 from the client, e.g. when user submits a sign-up form. The call will look
 like this:
 
-```tsx
+```tsx copy
 import { getAntiCSRFToken } from "@blitzjs/auth"
 
 // handling requests
@@ -447,7 +447,7 @@ As before, we’ll add a new API route. Inside, we’ll add an
 correct, we’ll create a new authenticated session as we did in the signup
 handler.
 
-```ts
+```ts copy
 // pages/api/login.ts
 
 import { SecurePassword } from "@blitzjs/auth"
@@ -499,7 +499,7 @@ export default login
 On the client side, you need to send a request to the `/api/login` in a
 similar way as in case of signup.
 
-```tsx
+```tsx copy
 import { getAntiCSRFToken } from "@blitzjs/auth"
 
 const antiCSRFToken = getAntiCSRFToken()
@@ -519,7 +519,7 @@ One last thing we’ll do on the API side is to add a logout handler. Inside
 we’ll use a `$revoke` function which removes the session and logs the user
 out.
 
-```ts
+```ts copy
 // pages/api/logout.ts
 import { api } from "../../src/blitz-server"
 
@@ -537,7 +537,7 @@ We already saw how to use Blitz Auth session’s methods in the Next.js API
 Routes. We can do so by accessing the Blitz context provided as third
 argument in an `api` wrapper:
 
-```ts
+```ts copy
 // my-api-routes.ts
 import { api } from "src/blitz-server"
 
@@ -554,7 +554,7 @@ A similar thing can be done in the case of `getServerSideProps` and
 that are wrappers for `getServerSideProps` and `getStaticProps`. Example
 usage:
 
-```tsx
+```tsx copy
 // MyPage.tsx
 import { gSSP } from "src/blitz-server"
 
@@ -578,7 +578,7 @@ component above it in the tree. Or you can set
 
 Here's an example usage:
 
-```tsx
+```tsx copy
 import { useSession } from "@blitzjs/auth"
 
 function Component() {
@@ -601,7 +601,7 @@ the `withBlitz` HOC. If you don’t have it, add a new `_app.tsx` file to
 the `pages` directory. In this file, we have to wrap the `App` component
 with the `withBlitz`.
 
-```tsx
+```tsx copy
 import { AppProps } from "next/app"
 import React from "react"
 import { withBlitz } from "../src/blitz-client"
@@ -619,14 +619,14 @@ Until we add a support for it, you’ll still have to use the old
 Now, let’s go back to our pages. In the `signup.tsx` and `login.tsx`,
 we’ll use `redirectAuthenticatedTo`:
 
-```tsx
+```tsx copy
 SignupPage.redirectAuthenticatedTo = "/user"
 export default SignupPage
 ```
 
 And in `login.tsx`:
 
-```tsx
+```tsx copy
 LoginPage.redirectAuthenticatedTo = "/user"
 export default LoginPage
 ```
@@ -634,7 +634,7 @@ export default LoginPage
 In the `user.tsx`, we’ll use `authenticate` and redirect to the `login`
 page if a user attempting to visit it is not authenticated.
 
-```tsx
+```tsx copy
 UserPage.authenticate = { redirectTo: "/login" }
 export default UserPage
 ```

@@ -11,7 +11,9 @@ const Logo = (props) => {
 import {useConfig} from "nextra-theme-docs"
 
 const OG_IMAGE_URL = "https://codesandbox.io/docs/projects/og-image.jpg"
-
+/**
+ * @type {import('nextra-theme-docs').DocsThemeConfig}
+ */
 export default {
   project: {
     link: 'https://github.com/blitz-js/blitz',

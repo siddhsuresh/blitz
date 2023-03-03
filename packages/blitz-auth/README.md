@@ -51,7 +51,7 @@ Currently Blitz Auth usage is only documented with Next.js. We are working on ad
 
 Add the following to your blitz-client.ts file:
 
-```ts
+```ts copy
 import {AuthClientPlugin} from "@blitzjs/auth"
 import {setupBlitzClient} from "@blitzjs/next"
 
@@ -70,7 +70,7 @@ export {withBlitz}
 
 Then, add the following to the blitz-server.ts file:
 
-```ts
+```ts copy
 import {setupBlitzServer} from "@blitzjs/next"
 import {AuthServerPlugin, PrismaStorage, simpleRolesIsAuthorized} from "@blitzjs/auth"
 import {db} from "db"

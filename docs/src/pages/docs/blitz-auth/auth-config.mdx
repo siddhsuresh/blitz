@@ -1,13 +1,11 @@
----
-title: Auth Configuration
-sidebar_label: Configuration
----
+
+# Auth Configuration
+
 
 You can customize session management by passing an object to the
 `AuthServerPlugin()` in `src/blitz-server`.
 
-```ts copy
-// src/blitz-server.ts
+```ts copy filename="src / blitz-server.ts"
 import { AuthServerPlugin, PrismaStorage } from "@blitzjs/auth"
 import { simpleRolesIsAuthorized } from "@blitzjs/auth"
 
@@ -39,7 +37,7 @@ type SessionConfigOptions = {
 }
 ```
 
-## Customize Session Persistence & Database Access {#customize-session-persistence-and-database-access}
+## Customize Session Persistence & Database Access 
 
 By default, session persistence is zero-config with `PrismaStorage`.
 However, you can customize this to save sessions somewhere else, like

@@ -130,7 +130,7 @@ Then, you have to create a `index.ts` (or `index.js`) file in the `db`
 folder. Inside we'll use `enhancePrisma` function from Blitz to wrap the
 Prisma's client:
 
-```ts
+```ts copy
 // db/index.ts
 
 import { enhancePrisma } from "blitz"
@@ -201,7 +201,7 @@ to your database and update Prisma client.
 You also need to update your `blitz.config.ts` file and add
 `sessionMiddleware` setup:
 
-```ts
+```ts copy
 // blitz.config.ts
 import { BlitzConfig, sessionMiddleware } from "blitz"
 
@@ -253,7 +253,7 @@ subpath `/store`. Since each page in Blitz is its own
 like `pages/products/index.tsx` will route to `example.com/store/products`
 in your application.
 
-```ts
+```ts copy
 // blitz.config.ts
 import { BlitzConfig } from "blitz"
 
@@ -281,7 +281,7 @@ pages you’ve added to this Blitz app (e.g. `/about` if you’ve added
 `pages/about.tsx`) will be handled by Blitz, and requests for any other
 route (e.g. `/dashboard`) will be proxied to `proxy.example.com`.
 
-```ts
+```ts copy
 // blitz.config.ts
 import { BlitzConfig } from "blitz"
 

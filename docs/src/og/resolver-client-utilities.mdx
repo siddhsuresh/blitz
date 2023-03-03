@@ -10,7 +10,7 @@ components.
 
 ### Example {#example}
 
-```tsx
+```tsx copy
 import { invoke } from "@blitzjs/rpc"
 import getProducts from "src/products/queries/getProducts"
 
@@ -60,7 +60,7 @@ for the automatic refetch.
 
 ### Example {#example-1}
 
-```tsx
+```tsx copy
 import { invalidateQuery } from "@blitzjs/rpc" // highlight-line
 import getProducts from "src/products/queries/getProducts"
 
@@ -112,7 +112,7 @@ documentation.
 
 ### Example {#example-2}
 
-```tsx
+```tsx copy
 import { getQueryKey, getQueryClient } from "@blitzjs/rpc"
 import getProducts from "src/products/queries/getProducts"
 
@@ -148,7 +148,7 @@ documentation.
 
 ### Example {#example-3}
 
-```tsx
+```tsx copy
 import { getQueryKey, getQueryClient } from "@blitzjs/rpc"
 import getInfiniteProducts from "src/products/queries/getInfiniteProducts"
 
@@ -204,7 +204,7 @@ causing a refetch. Disable refetch by passing an options object
 
 ### Example {#example-4}
 
-```tsx
+```tsx copy
 import { setQueryData } from "@blitzjs/rpc"
 
 export default function (props: { query: { id: number } }) {

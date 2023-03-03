@@ -14,7 +14,7 @@ simple to use. To run tests in your app, you will run `vitest run` or
 To make a new test, make a file named `something.test.ts` (or `.js`,
 `.tsx`, etc). Here's an example:
 
-```ts
+```ts copy
 import something from "./somewhere"
 
 it("does something", () => {
@@ -31,7 +31,7 @@ it("does something", () => {
 If you need to [customize the vitest config](https://vitest.dev/config/),
 you can do so in `vitest.config.ts`.
 
-```ts
+```ts copy
 // vitest.config.ts
 import { loadEnvConfig } from "@next/env"
 import { defineConfig } from "vitest/config"
@@ -126,7 +126,7 @@ in a user, and a few example tests.
 If you want to test your mutations/queries in an isolated manner, you will
 need to mock the ctx object:
 
-```ts
+```ts copy
 // test/createMockContext.ts
 import {
   Ctx,
@@ -182,7 +182,7 @@ export default async function createMockContext<C extends Ctx>({
 
 Later in your tests you can use it like this:
 
-```ts
+```ts copy
 import db from "db"
 import getUsers from "./getUsers"
 import createMockContext from "../../../test/createMockContext"

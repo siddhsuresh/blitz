@@ -28,7 +28,7 @@ rpc, you'd need to create a `blitz-server.ts` file somewhere in your
 project, e.g. in `src/blitz-server.ts`. We'll cover how to add plugins
 later.
 
-```ts
+```ts copy
 import { setupBlitzServer } from "@blitzjs/next"
 
 const {
@@ -46,7 +46,7 @@ Now, if you want Blitz's client functionalities, you'll have to create a
 `blitz-client.ts` file. It can be next to the `blitz-server.ts` in
 `src/blitz-client.ts`.
 
-```ts
+```ts copy
 import { setupBlitzClient } from "@blitzjs/next"
 
 export const { withBlitz } = setupBlitzClient({
@@ -64,7 +64,7 @@ Blitz's client side functionality.
 To use Blitz on the client, you also have to use the `withBlitz` function
 in your App component.
 
-```ts
+```ts copy
 import { withBlitz } from "src/blitz-client"
 
 function App({ Component, pageProps }: AppProps) {
@@ -79,7 +79,7 @@ export default withBlitz(App)
 Next.js requires you to manually type out page locations. Blitz comes with
 a [Route Manifest](./route-manifest), so you can do:
 
-```tsx
+```tsx copy
 <Link href={Routes.ProductsPage({ productId: 123 })} />
 // instead of
 <Link href={`/products/${123}`} />
