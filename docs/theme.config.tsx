@@ -1,6 +1,6 @@
 import {useRouter} from "next/router"
 import {useConfig, useTheme} from "nextra-theme-docs"
-import { useEffect } from "react"
+import { Footer } from "./src/components/home/Footer"
 
 const OG_IMAGE_URL = "/api/og"
 /**
@@ -11,7 +11,7 @@ export default {
     link: "https://github.com/blitz-js/blitz",
   },
 
-  footer: {component: null},
+  footer: {component: <Footer className={undefined} hasDarkMode={undefined}/>},
   feedback: {content: null},
 
   editLink: {text: "Edit this page on GitHub →"},

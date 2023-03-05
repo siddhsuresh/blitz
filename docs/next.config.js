@@ -11,4 +11,13 @@ const withNextra = require('nextra')({
   ]
 })
 
-module.exports = withNextra()
+module.exports = withNextra({
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.githubusercontent.com',
+      },
+    ],
+  },
+})
