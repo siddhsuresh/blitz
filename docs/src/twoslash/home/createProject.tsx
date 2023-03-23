@@ -1,7 +1,9 @@
+//@filename: src/projects/mutations/createProject
 // ---- ON THE SERVER ----
 // app/projects/mutations/createProject.ts
 import {resolver} from "@blitzjs/rpc"
-// import db from "db"
+//@errors: 2307
+import db from "db"
 import * as z from "zod"
 
 // This provides runtime validation + type safety
@@ -19,11 +21,11 @@ export default resolver.pipe(
   resolver.authorize(),
   // Perform business logic
   async (input) => {
-    // const project = await db.project.create({
-    //   data: {
-    //     name: input.name as string,
-    //   },
-    // })
-    // return project
+    const project = await db.project.create({
+      data: {
+        name: input.name as string,
+      },
+    })
+    return project
   },
 )

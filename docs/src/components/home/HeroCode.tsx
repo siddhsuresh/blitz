@@ -1,4 +1,6 @@
 import {CodeWindow} from "./CodeWindow"
+import {Code} from "../../twoslash/home/renders/createProject"
+import { setupTwoslashHovers } from "shiki-twoslash";
 
 // https://github.com/streamich/react-use/blob/master/src/useMedia.ts
 import {useEffect, useState} from "react"
@@ -35,8 +37,7 @@ export const useIsDesktop = () => {
 
 // import tokenize from "./tokenize.macro.js"
 
-const pageTokenized = 
-  `//---- ON THE CLIENT ----
+const pageTokenized = `//---- ON THE CLIENT ----
 // app/pages/projects/new.tsx
 import { BlitzPage, Routes } from "@blitzjs/next"
 import { useRouter } from "next/router"
@@ -74,8 +75,7 @@ NewProjectPage.getLayout = (page) => <Layout>{page}</Layout>
 export default NewProjectPage
 `
 
-const mutationTokenized = 
-  `// ---- ON THE SERVER ----
+const mutationTokenized = `// ---- ON THE SERVER ----
 // app/projects/mutations/createProject.ts
 import { resolver } from "@blitzjs/rpc"
 import db from "db"
@@ -99,6 +99,26 @@ export default resolver.pipe(
     return project
   }
 )`
+
+const convertToShikiTwoSlash = async () => {
+  const shiki = await import("shiki")
+  const {renderCodeToHTML, runTwoSlash} = await import("shiki-twoslash")
+
+  const highlighter = await shiki.getHighlighter({
+    theme: "github-light",
+  })
+  useEffect(setupTwoslashHovers, []);
+  const twoslash = runTwoSlash(mutationTokenized, "tsx", {})
+  const start = Date.now()
+  const html = renderCodeToHTML(mutationTokenized, "tsx", ["twoslash"], {}, highlighter, twoslash)
+  const time = Date.now() - start
+  return {
+    props: {
+      code: html,
+      time,
+    },
+  }
+}
 
 const HeroCode = ({className = ""}) => {
   const isDesktop = useIsDesktop()
@@ -127,7 +147,7 @@ const HeroCode = ({className = ""}) => {
         )
       }}
     >
-      {/* <CodeWindow.Code tokens={tabs.find((tab) => tab.selected).tokens} /> */}
+      <Code/>
     </CodeWindow>
   )
 }

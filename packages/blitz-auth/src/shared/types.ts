@@ -1,13 +1,13 @@
-import {Ctx} from "blitz"
+import { Ctx } from "blitz"
 
 export interface Session {
   // isAuthorize can be injected here
   // PublicData can be injected here
 }
 
-export type PublicData = Session extends {PublicData: unknown}
-  ? Session["PublicData"]
-  : {userId: unknown; role?: unknown}
+export type PublicData = Session extends { PublicData: infer T }
+  ? T
+  : { userId: unknown; role?: unknown };
 
 export interface EmptyPublicData extends Partial<Omit<PublicData, "userId">> {
   userId: PublicData["userId"] | null
@@ -25,9 +25,11 @@ export interface AuthenticatedClientSession extends PublicData {
 export type IsAuthorizedArgs = Session extends {
   isAuthorized: (...args: any) => any
 }
+  //@ts-ignore
   ? "args" extends keyof Parameters<Session["isAuthorized"]>[0]
-    ? Parameters<Session["isAuthorized"]>[0]["args"]
-    : unknown[]
+  //@ts-ignore
+  ? Parameters<Session["isAuthorized"]>[0]["args"]
+  : unknown[]
   : unknown[]
 
 export interface SessionModel extends Record<any, any> {
