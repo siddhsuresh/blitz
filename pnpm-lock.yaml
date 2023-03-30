@@ -285,8 +285,8 @@ importers:
       blitz: link:../packages/blitz
       clsx: 1.2.1
       next: 13.2.3_biqbaboplfbrettd7655fr4n2y
-      nextra: 2.2.17_nvzgbose6yf6w7ijjprgspqefi
-      nextra-theme-docs: 2.2.17_sk5zsfkxizvi3trle4mkuwucem
+      nextra: 2.3.0_nvzgbose6yf6w7ijjprgspqefi
+      nextra-theme-docs: 2.3.0_oheepzqezy2mbagsibcmfnuhl4
       prisma: 4.6.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -14134,11 +14134,11 @@ packages:
       - babel-plugin-macros
     dev: false
 
-  /nextra-theme-docs/2.2.17_sk5zsfkxizvi3trle4mkuwucem:
-    resolution: {integrity: sha512-GTTie4YtTjiBdh3PqSYX5xtOQaCcLWoHWrubR2ikmBMq0GYxM2AX26J6O3gZ/xzzJje+vWmZGOilop/bG2RCog==}
+  /nextra-theme-docs/2.3.0_oheepzqezy2mbagsibcmfnuhl4:
+    resolution: {integrity: sha512-KMvHhGOvaKIqR71Gnx+w/1c9LLfpQJ3+fnCAgg9qfjXo2agr1zRKyRDROyY8cGINdslpzmEGgs/MH2gDSAI6nw==}
     peerDependencies:
       next: '>=9.5.3'
-      nextra: 2.2.17
+      nextra: 2.3.0
       react: '>=16.13.1'
       react-dom: '>=16.13.1'
     dependencies:
@@ -14153,15 +14153,16 @@ packages:
       next: 13.2.3_biqbaboplfbrettd7655fr4n2y
       next-seo: 5.15.0_nvzgbose6yf6w7ijjprgspqefi
       next-themes: 0.2.1_nvzgbose6yf6w7ijjprgspqefi
-      nextra: 2.2.17_nvzgbose6yf6w7ijjprgspqefi
+      nextra: 2.3.0_nvzgbose6yf6w7ijjprgspqefi
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       scroll-into-view-if-needed: 3.0.6
       zod: 3.20.2
     dev: false
 
-  /nextra/2.2.17_nvzgbose6yf6w7ijjprgspqefi:
-    resolution: {integrity: sha512-IRfvDfUut6YgbivBVP8cG2DkxEBvODWQFiv7rqHD1tR9lBjiDKugyCi64zl1CiOlW5awc8xmbPDrzYak9l+A/w==}
+  /nextra/2.3.0_nvzgbose6yf6w7ijjprgspqefi:
+    resolution: {integrity: sha512-v17vMq2bJa15iKKt9+6AidSeIoKcK1ZlXmwqFqTgc0pQmRrl6pTJaSR36UZKcpMwvvLZ/7/xWuWV/OQB599O3g==}
+    engines: {node: '>=16'}
     peerDependencies:
       next: '>=9.5.3'
       react: '>=16.13.1'
@@ -14190,6 +14191,7 @@ packages:
       title: 3.5.3
       unist-util-remove: 3.1.1
       unist-util-visit: 4.1.2
+      zod: 3.20.2
     transitivePeerDependencies:
       - supports-color
     dev: false
