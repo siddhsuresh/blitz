@@ -8,9 +8,10 @@
   "blitz-recipies": "Blitz Recipies",
   "blitz-generator": "Blitz Generator",
   "backend-architecture": "Backend Architecture",
-  "databse": "Database",
+  "database": "Database",
   "cli" : "CLI",
   "migration":"Migration Guides",
+  "recipies":"Recipies",
   "docs": {
     "title": "Documentation",
     "type": "page"
