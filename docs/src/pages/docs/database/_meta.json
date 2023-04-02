@@ -1,0 +1,6 @@
+{
+  "overview": "Overview",
+  "postgres": "Run Postgres Locally",
+  "seeds": "Seeds",
+  "prisma": "Prisma Utilities"
+}
