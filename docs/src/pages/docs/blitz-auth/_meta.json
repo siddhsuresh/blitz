@@ -1,0 +1,11 @@
+{
+  "overview": "Overview",
+  "setup": "Setup",
+  "configuration": "Configuration",
+  "session-management": "Sessions",
+  "server": "Server-Side APIs",
+  "client": "Client-Side APIs",
+  "authorization-and-security": "Authorization and Security",
+  "third-party-login-with-passportjs": "Third Party Login w/Passport.js",
+  "impersonate-other-users": "Impersonate Other Users"
+}

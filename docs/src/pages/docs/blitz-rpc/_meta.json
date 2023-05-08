@@ -1,0 +1,16 @@
+{
+  "overview": "Overview",
+  "setup": "Setup",
+  "configuration": "Configuration",
+  "query-resolvers": "Query Resolver",
+  "query-usage": "Use Queries",
+  "mutation-resolvers": "Mutation Resolver",
+  "mutation-usage": "Use Mutations",
+  "resolver-client-utilities": "Resolver Client Utilities",
+  "resolver-server-utilities": "Resolver Server Utilities",
+  "use-query": "useQuery",
+  "use-paginated-query": "usePaginatedQuery",
+  "use-infinite-query": "useInfiniteQuery",
+  "use-mutation": "useMutation",
+  "specification": "RPC Specification"
+}

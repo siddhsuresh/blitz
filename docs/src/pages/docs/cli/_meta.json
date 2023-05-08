@@ -1,0 +1,13 @@
+{
+  "overview": "Overview",
+  "new": "blitz new",
+  "dev": "blitz dev",
+  "start": "blitz start",
+  "build": "blitz build",
+  "prisma": "blitz prisma",
+  "generate": "blitz generate",
+  "codegen": "blitz codegen",
+  "routes": "blitz routes",
+  "console": "blitz console",
+  "install": "blitz install"
+}
